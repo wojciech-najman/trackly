@@ -123,7 +123,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/checkouts/stock/{stock}/create', [ItemCheckoutController::class, 'showCreateItemCheckout']);
 
-    Route::post('/checkouts/stock/{stock}/take', [ItemCheckoutController::class, 'store']);
+    Route::post('/checkouts/stock/{stock}/take', [ItemCheckoutController::class, 'createItemCheckout']);
 
     Route::post('/checkouts/{itemCheckout}/return', [ItemCheckoutController::class, 'returnItemCheckout']);
 

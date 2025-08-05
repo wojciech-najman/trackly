@@ -12,12 +12,12 @@ use App\Domains\Stock\Services\IncreaseStockInStoreService;
 use App\Http\Requests\CheckoutData;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 
 class ItemCheckoutService
 {
-    public function getItemCheckouts(Request $request): Paginator
+    public function getItemCheckouts(Request $request): LengthAwarePaginator
     {
         return ItemCheckout::orderBy('id', 'desc')
             ->filter($request)
