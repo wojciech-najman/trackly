@@ -46,4 +46,9 @@ class CreateNewUserService implements CreatesNewUsers
 
         return $user;
     }
+
+    public function create(array $input): User
+    {
+        return $this->createUser($input);
+    }
 }
