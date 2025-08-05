@@ -18,7 +18,7 @@ class StoreActionsService
             'company_id' => Company::current()->id,
             'model' => Store::class,
             'model_id' => $store->id,
-            'type' => ActionTypes::STORE_CREATED()->value,
+            'type' => ActionTypes::STORE_CREATED->value,
             'description' => 'Store <b>'.$store->name.'</b> was created',
             'user_id' => Auth::user()->id,
         ]);
@@ -30,7 +30,7 @@ class StoreActionsService
             'company_id' => Company::current()->id,
             'model' => Store::class,
             'model_id' => $store->id,
-            'type' => ActionTypes::STORE_UPDATED()->value,
+            'type' => ActionTypes::STORE_UPDATED->value,
             'description' => 'Store <b>'.$store->name.'</b> was updated',
             'user_id' => Auth::user()->id,
         ]);
@@ -42,7 +42,7 @@ class StoreActionsService
             'company_id' => Company::current()->id,
             'model' => Store::class,
             'model_id' => $store->id,
-            'type' => ActionTypes::STORE_DELETED()->value,
+            'type' => ActionTypes::STORE_DELETED->value,
             'description' => 'Store <b>'.$store->name.'</b> was deleted',
             'user_id' => Auth::user()->id,
         ]);

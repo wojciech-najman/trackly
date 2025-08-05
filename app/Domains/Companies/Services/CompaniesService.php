@@ -51,7 +51,7 @@ class CompaniesService
         $userCompany = CompanyUser::whereCompanyId(Company::current()->id)
             ->whereUserId($user->id)->first();
 
-        $role = CompanyRole::whereName(CompanyRoles::USER()->value)->first();
+        $role = CompanyRole::whereName(CompanyRoles::USER->value)->first();
 
         if (! $userCompany) {
             CompanyUser::create([

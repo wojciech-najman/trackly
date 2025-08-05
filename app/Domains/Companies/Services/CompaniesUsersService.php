@@ -14,7 +14,7 @@ class CompaniesUsersService
 {
     public function createAdminRole(Company $company): CompanyUser
     {
-        $role = CompanyRole::whereName(CompanyRoles::ADMIN()->value)->first();
+        $role = CompanyRole::whereName(CompanyRoles::ADMIN->value)->first();
 
         return CompanyUser::create([
             'company_id' => $company->id,

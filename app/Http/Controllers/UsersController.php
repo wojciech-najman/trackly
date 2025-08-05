@@ -46,7 +46,7 @@ class UsersController extends BaseController
             'password' => Hash::make($createUserData->password),
         ]);
 
-        $role = CompanyRole::firstOrCreate(['name' => CompanyRoles::USER()->value]);
+        $role = CompanyRole::firstOrCreate(['name' => CompanyRoles::USER->value]);
 
         CompanyUser::create([
             'company_id' => Company::current()->id,

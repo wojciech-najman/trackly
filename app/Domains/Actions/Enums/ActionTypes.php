@@ -4,33 +4,30 @@ declare(strict_types=1);
 
 namespace App\Domains\Actions\Enums;
 
-use Spatie\Enum\Enum;
-
-/**
- * @method static self STORE_CREATED()
- * @method static self STORE_UPDATED()
- * @method static self STORE_DELETED()
- * @method static self ITEM_CREATED()
- * @method static self ITEM_UPDATED()
- * @method static self ITEM_DELETED()
- * @method static self ITEM_NOTE_CREATED()
- * @method static self ITEM_NOTE_UPDATED()
- * @method static self ITEM_NOTE_DELETED()
- * @method static self ITEM_STOCK_CREATED()
- * @method static self ITEM_STOCK_UPDATED()
- * @method static self ITEM_STOCK_MOVED()
- * @method static self ITEM_STOCK_DELETED()
- * @method static self ITEM_TAG_ATTACHED()
- * @method static self ITEM_TAG_DETACHED()
- * @method static self TAG_CREATED()
- * @method static self TAG_UPDATED()
- * @method static self TAG_DELETED()
- * @method static self USER_REGISTERED()
- * @method static self USER_UPDATED_HIS_ACCOUNT()
- * @method static self USER_UPDATED_HIS_PASSWORD()
- * @method static self USER_CREATED()
- * @method static self USER_ACCOUNT_UPDATED()
- * @method static self USER_PASSWORD_CHANGED()
- * @method static self USER_DELETED()
- */
-class ActionTypes extends Enum {}
+enum ActionTypes: string {
+    case STORE_CREATED = 'STORE_CREATED';
+    case STORE_UPDATED = 'STORE_UPDATED';
+    case STORE_DELETED = 'STORE_DELETED';
+    case ITEM_CREATED = 'ITEM_CREATED';
+    case ITEM_UPDATED = 'ITEM_UPDATED';
+    case ITEM_DELETED = 'ITEM_DELETED';
+    case ITEM_NOTE_CREATED = 'ITEM_NOTE_CREATED';
+    case ITEM_NOTE_UPDATED = 'ITEM_NOTE_UPDATED';
+    case ITEM_NOTE_DELETED = 'ITEM_NOTE_DELETED';
+    case ITEM_STOCK_CREATED = 'ITEM_STOCK_CREATED';
+    case ITEM_STOCK_UPDATED = 'ITEM_STOCK_UPDATED';
+    case ITEM_STOCK_MOVED = 'ITEM_STOCK_MOVED';
+    case ITEM_STOCK_DELETED = 'ITEM_STOCK_DELETED';
+    case ITEM_TAG_ATTACHED = 'ITEM_TAG_ATTACHED';
+    case ITEM_TAG_DETACHED = 'ITEM_TAG_DETACHED';
+    case TAG_CREATED = 'TAG_CREATED';
+    case TAG_UPDATED = 'TAG_UPDATED';
+    case TAG_DELETED = 'TAG_DELETED';
+    case USER_REGISTERED = 'USER_REGISTERED';
+    case USER_UPDATED_HIS_ACCOUNT = 'USER_UPDATED_HIS_ACCOUNT';
+    case USER_UPDATED_HIS_PASSWORD = 'USER_UPDATED_HIS_PASSWORD';
+    case USER_CREATED = 'USER_CREATED';
+    case USER_ACCOUNT_UPDATED = 'USER_ACCOUNT_UPDATED';
+    case USER_PASSWORD_CHANGED = 'USER_PASSWORD_CHANGED';
+    case USER_DELETED = 'USER_DELETED';
+}

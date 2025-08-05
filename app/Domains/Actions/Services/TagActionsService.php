@@ -18,7 +18,7 @@ class TagActionsService
             'company_id' => Company::current()->id,
             'model' => Tag::class,
             'model_id' => $tag->id,
-            'type' => ActionTypes::TAG_CREATED()->value,
+            'type' => ActionTypes::TAG_CREATED->value,
             'description' => 'Tag <b>'.$tag->name.'</b> was created',
             'user_id' => Auth::user()->id,
         ]);
@@ -30,7 +30,7 @@ class TagActionsService
             'company_id' => Company::current()->id,
             'model' => Tag::class,
             'model_id' => $tag->id,
-            'type' => ActionTypes::TAG_UPDATED()->value,
+            'type' => ActionTypes::TAG_UPDATED->value,
             'description' => 'Tag <b>'.$tag->name.'</b> was updated',
             'user_id' => Auth::user()->id,
         ]);
@@ -42,7 +42,7 @@ class TagActionsService
             'company_id' => Company::current()->id,
             'model' => Tag::class,
             'model_id' => $tag->id,
-            'type' => ActionTypes::TAG_DELETED()->value,
+            'type' => ActionTypes::TAG_DELETED->value,
             'description' => 'Tag <b>'.$tag->name.'</b> was deleted',
             'user_id' => Auth::user()->id,
         ]);

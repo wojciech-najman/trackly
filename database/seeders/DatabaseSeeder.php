@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        foreach (CompanyRoles::toArray() as $role) {
-            CompanyRole::factory()->state(['name' => $role])->create();
+        foreach (CompanyRoles::cases() as $role) {
+            CompanyRole::factory()->state(['name' => $role->value])->create();
         }
     }
 }

@@ -16,7 +16,7 @@ class CreateCompanyDuringRegistrationService
     {
         $company = Company::create(['name' => 'My company ('.$user->name.')']);
 
-        $companyRole = CompanyRole::firstOrCreate(['name' => CompanyRoles::ADMIN()->value]);
+        $companyRole = CompanyRole::firstOrCreate(['name' => CompanyRoles::ADMIN->value]);
 
         CompanyUser::create([
             'company_id' => $company->id,

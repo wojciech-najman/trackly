@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
                 ->first()
                 ?->role;
 
-            return $role->name === CompanyRoles::ADMIN()->value;
+            return $role->name === CompanyRoles::ADMIN->value;
         });
     }
 }

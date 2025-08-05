@@ -18,7 +18,7 @@ class ItemActionsService
             'company_id' => Company::current()->id,
             'model' => Item::class,
             'model_id' => $item->id,
-            'type' => ActionTypes::ITEM_CREATED()->value,
+            'type' => ActionTypes::ITEM_CREATED->value,
             'description' => 'Item <b>'.$item->name.'</b> was created',
             'user_id' => Auth::user()->id,
         ]);
@@ -30,7 +30,7 @@ class ItemActionsService
             'company_id' => Company::current()->id,
             'model' => Item::class,
             'model_id' => $item->id,
-            'type' => ActionTypes::ITEM_UPDATED()->value,
+            'type' => ActionTypes::ITEM_UPDATED->value,
             'description' => 'Item <b>'.$item->name.'</b> was updated',
             'user_id' => Auth::user()->id,
         ]);
@@ -42,7 +42,7 @@ class ItemActionsService
             'company_id' => Company::current()->id,
             'model' => Item::class,
             'model_id' => $item->id,
-            'type' => ActionTypes::ITEM_DELETED()->value,
+            'type' => ActionTypes::ITEM_DELETED->value,
             'description' => 'Item <b>'.$item->name.'</b> was deleted',
             'user_id' => Auth::user()->id,
         ]);
@@ -54,7 +54,7 @@ class ItemActionsService
             'company_id' => Company::current()->id,
             'model' => Item::class,
             'model_id' => $item->id,
-            'type' => ActionTypes::ITEM_NOTE_CREATED()->value,
+            'type' => ActionTypes::ITEM_NOTE_CREATED->value,
             'description' => 'Note was added to item: <b>'.$item->name.'</b>',
             'user_id' => Auth::user()->id,
         ]);
@@ -66,7 +66,7 @@ class ItemActionsService
             'company_id' => Company::current()->id,
             'model' => Item::class,
             'model_id' => $item->id,
-            'type' => ActionTypes::ITEM_NOTE_UPDATED()->value,
+            'type' => ActionTypes::ITEM_NOTE_UPDATED->value,
             'description' => 'Note was updated in item: <b>'.$item->name.'</b>',
             'user_id' => Auth::user()->id,
         ]);
@@ -78,7 +78,7 @@ class ItemActionsService
             'company_id' => Company::current()->id,
             'model' => Item::class,
             'model_id' => $item->id,
-            'type' => ActionTypes::ITEM_NOTE_DELETED()->value,
+            'type' => ActionTypes::ITEM_NOTE_DELETED->value,
             'description' => 'Note was deleted in item: <b>'.$item->name.'</b>',
             'user_id' => Auth::user()->id,
         ]);
