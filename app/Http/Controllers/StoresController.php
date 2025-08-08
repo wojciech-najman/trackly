@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Domains\Actions\Services\StoreActionsService;
-use App\Domains\Companies\Models\Company;
 use App\Domains\Stores\Models\Store;
+use App\Domains\Stores\Services\StoresService;
 use App\Http\Requests\StoreData;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,47 +17,35 @@ use function redirect;
 
 class StoresController extends BaseController
 {
-    public function index(Request $request): Response
+    public function showStores(Request $request): Response
     {
         return Inertia::render('stores', [
-            'items' => Store::orderBy('id', 'desc')
-                ->filter($request)
-                ->paginate(10)
-                ->withQueryString(),
+            'items' => app(StoresService::class)->getStores($request),
         ]);
     }
 
-    public function store(StoreData $storeData): RedirectResponse
+    public function createStore(StoreData $data): RedirectResponse
     {
-        $store = Store::create([
-            'company_id' => Company::current()->id,
-            ...$storeData->all(),
-        ]);
-
-        app(StoreActionsService::class)->storeCreated($store);
+        app(StoresService::class)->createStore($data);
 
         return redirect()->to('/stores');
     }
 
-    public function edit(Store $store): Response
+    public function showEditStore(Store $store): Response
     {
         return Inertia::render('edit-store', ['store' => $store]);
     }
 
-    public function update(StoreData $storeData, Store $store): RedirectResponse
+    public function editStore(StoreData $data, Store $store): RedirectResponse
     {
-        $store->update($storeData->all());
-
-        app(StoreActionsService::class)->storeUpdated($store);
+        app(StoresService::class)->editStore($data, $store);
 
         return redirect()->to('/stores');
     }
 
-    public function delete(Store $store): RedirectResponse
+    public function deleteStore(Store $store): RedirectResponse
     {
-        $store->delete();
-
-        app(StoreActionsService::class)->storeDeleted($store);
+        app(StoresService::class)->deleteStore($store);
 
         return redirect()->to('/stores');
     }

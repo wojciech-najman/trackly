@@ -23,7 +23,7 @@ class ItemsController extends BaseController
     {
         return Inertia::render('items', [
             'items' => app(ItemsService::class)->getItems($request),
-            'tags' => app(TagsService::class)->getTags($request),
+            'tags' => app(TagsService::class)->getAllTags($request),
         ]);
     }
 

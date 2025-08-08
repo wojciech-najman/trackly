@@ -7,13 +7,13 @@ namespace App\Http\Controllers;
 use App\Domains\Items\Models\Item;
 use App\Domains\Stock\Models\Stock;
 use App\Domains\Stock\Services\CreateStockInStoreService;
-use App\Domains\Stock\Services\DecreaseStockInStoreService;
-use App\Domains\Stock\Services\IncreaseStockInStoreService;
+use App\Domains\Stock\Services\StockService;
 use App\Domains\Stores\Models\Store;
-use App\Domains\Tags\Models\Tag;
+use App\Domains\Tags\Services\TagsService;
 use App\Http\Requests\MoveStockData;
 use App\Http\Requests\StockData;
 use App\Http\Requests\UpdateStockData;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -24,18 +24,15 @@ use function redirect;
 
 class StockController extends BaseController
 {
-    public function index(Request $request): Response
+    public function showStock(Request $request): Response
     {
         return Inertia::render('stock', [
-            'items' => Stock::orderBy('id', 'desc')
-                ->filter($request)
-                ->paginate(10)
-                ->withQueryString(),
-            'tags' => Tag::all(),
+            'items' => app(StockService::class)->getStock($request),
+            'tags' => app(TagsService::class)->getAllTags(),
         ]);
     }
 
-    public function create(): Response
+    public function showCreateStock(): Response
     {
         return Inertia::render('create-stock', [
             'stores' => Store::orderBy('id')->get(),
@@ -43,14 +40,14 @@ class StockController extends BaseController
         ]);
     }
 
-    public function store(StockData $stockData): RedirectResponse
+    public function createStock(StockData $data): RedirectResponse
     {
-        app(CreateStockInStoreService::class)->create($stockData);
+        app(CreateStockInStoreService::class)->create($data);
 
         return redirect()->to('/stock');
     }
 
-    public function edit(Stock $stock): Response
+    public function showEditStock(Stock $stock): Response
     {
         return Inertia::render('edit-stock', [
             'stores' => Store::orderBy('id')->get(),
@@ -59,14 +56,14 @@ class StockController extends BaseController
         ]);
     }
 
-    public function update(UpdateStockData $updateStockData, Stock $stock): RedirectResponse
+    public function updateStock(UpdateStockData $data, Stock $stock): RedirectResponse
     {
-        $stock->update($updateStockData->all());
+        app(StockService::class)->updateStock($data, $stock);
 
         return redirect()->to('/stock');
     }
 
-    public function moveIndex(Stock $stock): Response
+    public function showMoveStock(Stock $stock): Response
     {
         return Inertia::render('move-stock', [
             'stores' => Store::orderBy('id')->get(),
@@ -75,22 +72,19 @@ class StockController extends BaseController
         ]);
     }
 
-    public function move(MoveStockData $moveStockData, Stock $stock): RedirectResponse
+    /**
+     * @throws Exception
+     */
+    public function moveStock(MoveStockData $data, Stock $stock): RedirectResponse
     {
-        app(DecreaseStockInStoreService::class)->decrease($stock, $moveStockData->quantity);
-
-        app(IncreaseStockInStoreService::class)->increase(
-            $moveStockData->store_id,
-            $stock->item_id,
-            $moveStockData->quantity
-        );
+        app(StockService::class)->moveStock($data, $stock);
 
         return redirect()->to('/stock');
     }
 
-    public function delete(Stock $stock): RedirectResponse
+    public function deleteStock(Stock $stock): RedirectResponse
     {
-        $stock->delete();
+        app(StockService::class)->deleteStock($stock);
 
         return redirect()->to('/stock');
     }

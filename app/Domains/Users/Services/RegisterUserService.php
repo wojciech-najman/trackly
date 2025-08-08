@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
-class CreateNewUserService implements CreatesNewUsers
+class RegisterUserService implements CreatesNewUsers
 {
     use PasswordValidationRules;
 
